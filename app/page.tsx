@@ -19,9 +19,6 @@ export default async function Home() {
             priority
             className="h-10 w-10 select-none overflow-clip rounded-lg bg-clip-content object-cover object-center"
           />
-          <span className="hidden text-5xl uppercase opacity-75 sm:block">
-            Radio Alegría
-          </span>
         </Link>
         <nav className="flex items-center gap-3">
           <ModeToggle
