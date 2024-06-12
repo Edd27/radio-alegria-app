@@ -1,11 +1,28 @@
 import AudioPlayer from "@/components/player/audio-player";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-background p-4 lg:px-32 xl:px-64">
       <header className="fixed left-0 top-0 flex w-full items-center justify-between gap-3 bg-background p-4 lg:px-32 xl:px-64">
-        <h1 className="text-xl font-bold">Radio Alegría</h1>
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-bold"
+        >
+          <Image
+            src="/cover.jpg"
+            alt="Logo de Radio Alegria"
+            width={200}
+            height={200}
+            priority
+            className="h-10 w-10 select-none overflow-clip rounded-lg bg-clip-content object-cover object-center"
+          />
+          <span className="hidden text-5xl uppercase opacity-75 sm:block">
+            RDM
+          </span>
+        </Link>
         <nav className="flex items-center gap-3">
           <ModeToggle
             type="button"

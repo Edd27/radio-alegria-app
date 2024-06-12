@@ -11,9 +11,9 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "Radio Alegría",
+  title: "Radio Alegría Moroleón",
   description:
-    "Transmisión en vivo las 24 horas de Radio Alegría - HHBV 95.7 FM",
+    "Transmisión en vivo las 24 horas de Radio Alegría Moroleón - HHBV 95.7 FM",
 };
 
 export default function RootLayout({
