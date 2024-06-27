@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { MutableRefObject } from "react";
 
 interface Props {
-  audioRef: MutableRefObject<HTMLAudioElement | null>;
   isPlaying: boolean;
 }
 
-export default function DisplayTrack({ audioRef, isPlaying }: Props) {
+export default function DisplayTrack({ isPlaying }: Props) {
   return (
     <div className="relative bg-transparent">
       <div
@@ -29,10 +27,6 @@ export default function DisplayTrack({ audioRef, isPlaying }: Props) {
           className="h-[200px] w-[200px] select-none overflow-clip bg-clip-content object-cover object-center"
         />
       </div>
-      <audio
-        src={process.env.NEXT_PUBLIC_STREAM_URL}
-        ref={audioRef}
-      />
     </div>
   );
 }

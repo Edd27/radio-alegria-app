@@ -1,36 +1,20 @@
-import { Dispatch, MutableRefObject, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import PlayButton from "./play-button";
 
 interface Props {
-  audioRef: MutableRefObject<HTMLAudioElement | null>;
-  volume: number;
   isPlaying: boolean;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
+  setStream: Dispatch<SetStateAction<Howl | null>>;
 }
 
 export default function Controls({
-  audioRef,
-  volume,
   isPlaying,
   setIsPlaying,
+  setStream,
 }: Props) {
   const togglePlayPause = () => {
     setIsPlaying((prev) => !prev);
   };
-
-  useEffect(() => {
-    if (isPlaying) {
-      audioRef?.current?.play();
-    } else {
-      audioRef?.current?.pause();
-    }
-  }, [isPlaying, audioRef]);
-
-  useEffect(() => {
-    if (audioRef?.current) {
-      audioRef.current.volume = volume / 100;
-    }
-  }, [volume, audioRef]);
 
   return (
     <div className="mt-10 flex w-full items-center justify-center">
