@@ -27,9 +27,10 @@ export default function AudioPlayer() {
 
   useEffect(() => {
     if (isPlaying) {
+      stream?.unload();
       stream?.play();
     } else {
-      stream?.stop();
+      stream?.unload();
     }
   }, [isPlaying, stream]);
 
