@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function Home() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-background p-4 lg:px-32 xl:px-64">
-      <header className="fixed left-0 top-0 flex w-full items-center justify-between gap-3 bg-background p-4 lg:px-32 xl:px-64">
+      <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between gap-3 bg-background p-4 lg:px-32 xl:px-64">
         <Link
           href="/"
           className="flex items-center gap-2 font-bold"
@@ -27,7 +27,7 @@ export default async function Home() {
           />
         </nav>
       </header>
-      <section>
+      <section className="pt-16">
         <AudioPlayer />
         <footer className="mt-10 max-w-xs text-pretty text-center">
           <small>

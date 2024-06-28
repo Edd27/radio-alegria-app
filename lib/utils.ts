@@ -31,3 +31,27 @@ export const FIELDS: { [key: string]: string } = {
   role: "Rol",
   actions: "Acciones",
 };
+
+export function calculateTimeAgo(time: number) {
+  const dateFromAPI: Date = new Date(time * 1000);
+
+  const now: Date = new Date();
+
+  const differenceInMs: number = now.getTime() - dateFromAPI.getTime();
+
+  const differenceInSeconds: number = Math.floor(differenceInMs / 1000);
+  const differenceInMinutes: number = Math.floor(differenceInSeconds / 60);
+  const differenceInHours: number = Math.floor(differenceInMinutes / 60);
+
+  let timeAgoText: string;
+
+  if (differenceInSeconds < 60) {
+    timeAgoText = `hace ${differenceInSeconds} segundos`;
+  } else if (differenceInMinutes < 60) {
+    timeAgoText = `hace ${differenceInMinutes} minutos`;
+  } else {
+    timeAgoText = `hace ${differenceInHours} horas`;
+  }
+
+  return timeAgoText;
+}
