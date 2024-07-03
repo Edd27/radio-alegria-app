@@ -8,12 +8,22 @@ interface Props {
 
 export default function DisplayTrack({ isPlaying, track }: Props) {
   return (
-    <div className="relative bg-transparent">
+    <div className="relative h-full w-full max-w-xs overflow-hidden rounded-lg border bg-transparent shadow lg:overflow-visible lg:border-none lg:shadow-none">
       <div
-        className={`absolute top-0 h-full w-full animate-spin-slow bg-[url('/vinyl.webp')] bg-cover transition-all ${isPlaying ? "lg:-right-1/4" : "lg:-right-0"}`}
+        className={`absolute left-2 top-2 flex items-center gap-1 rounded-md border bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500 lg:hidden`}
+      >
+        <div
+          className={`h-2 w-2 rounded-full ${isPlaying ? "bg-red-500" : "bg-secondary"}`}
+        ></div>
+        <span className={`text-secondary`}>
+          {isPlaying ? "En vivo" : "Pausado"}
+        </span>
+      </div>
+      <div
+        className={`absolute right-0 top-0 h-full w-full max-w-xs animate-spin-slow bg-[url('/vinyl.webp')] bg-cover transition-all ${isPlaying ? "lg:-right-1/4" : "lg:-right-0"}`}
       ></div>
       <div
-        className={`relative grid items-end overflow-hidden rounded-lg bg-transparent shadow-2xl transition-all ${isPlaying ? "scale-0 lg:-translate-x-1/4 lg:scale-100" : "scale-100 lg:translate-x-0"}`}
+        className={`relative grid items-end overflow-hidden rounded-lg border bg-secondary transition-all ${isPlaying ? "scale-0 lg:-translate-x-1/4 lg:scale-100" : "scale-100 lg:translate-x-0"}`}
       >
         <div
           className={`absolute left-2 top-2 flex items-center gap-1 rounded-md border bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500`}

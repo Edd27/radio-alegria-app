@@ -13,10 +13,10 @@ export default function AudioPlayer() {
   const [volume, setVolume] = useState(30);
   const [stream, setStream] = useState<Howl | null>(null);
   const [track, setTrack] = useState<Track>({
-    track_artist: "Radio Alegria",
+    track_artist: "Radio Alegría",
     track_played: new Date().getTime(),
     track_image: "/cover.jpg",
-    track_title: "Radio Alegria",
+    track_title: "Radio Alegría",
   });
 
   useEffect(() => {
@@ -43,25 +43,31 @@ export default function AudioPlayer() {
   }, [isPlaying, stream]);
 
   return (
-    <div className="mx-auto w-full">
-      <DisplayTrack
-        isPlaying={isPlaying}
-        track={track}
-      />
-      <Controls
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        setStream={setStream}
-      />
-      <Volume
-        volume={volume}
-        setVolume={setVolume}
-      />
-      <Playlist
-        setTrack={setTrack}
-        track={track}
-        isPlaying={isPlaying}
-      />
+    <div className="mx-auto grid w-full gap-4 overflow-y-clip lg:grid-cols-2">
+      <div className="flex max-h-[320px] w-full items-center justify-center">
+        <DisplayTrack
+          isPlaying={isPlaying}
+          track={track}
+        />
+      </div>
+      <div className="flex w-full flex-col justify-between gap-4 lg:max-h-[320px]">
+        <div className="flex w-full items-center gap-4">
+          <Controls
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            setStream={setStream}
+          />
+          <Volume
+            volume={volume}
+            setVolume={setVolume}
+          />
+        </div>
+        <Playlist
+          setTrack={setTrack}
+          track={track}
+          isPlaying={isPlaying}
+        />
+      </div>
     </div>
   );
 }

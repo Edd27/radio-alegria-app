@@ -32,16 +32,16 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
   }, [setTrack, playlist]);
 
   return (
-    <div className="mt-4 h-fit w-full overflow-auto rounded-md border shadow transition-all">
+    <div className="w-full overflow-auto overflow-y-auto rounded-md border shadow transition-all">
       {isError ? (
         <h2 className="text-center">
-          Ocurrio un error al obtener la lista de reproduccion
+          Ocurrió un error al obtener la lista de reproducción
         </h2>
       ) : isLoading ? (
         <SkeletonSong />
       ) : (
         <ul>
-          {playlist.slice(0, 4).map((song, index) => (
+          {playlist.map((song, index) => (
             <li
               key={index}
               className={`flex gap-2 p-2 ${track.track_title === song.track_title && track.track_artist === song.track_artist ? "bg-primary text-secondary" : ""}`}

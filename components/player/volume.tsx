@@ -23,7 +23,7 @@ export default function Volume({ volume, setVolume }: Props) {
   }
 
   return (
-    <div className="mt-4 flex w-full items-center gap-2">
+    <div className="hidden h-full w-full items-center gap-2 lg:flex">
       <button onClick={decrementVolume}>
         <Volume1Icon />
       </button>

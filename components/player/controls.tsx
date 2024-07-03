@@ -17,7 +17,7 @@ export default function Controls({
   };
 
   return (
-    <div className="mt-10 flex w-full items-center justify-center">
+    <div className="flex h-full w-full items-center justify-center lg:w-1/3">
       <PlayButton
         isPlaying={isPlaying}
         onClick={togglePlayPause}

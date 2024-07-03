@@ -38,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen w-full bg-background">{children}</main>
+          <main className="min-h-screen bg-background">{children}</main>
           <Toaster />
         </ThemeProvider>
       </body>
