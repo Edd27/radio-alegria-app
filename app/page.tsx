@@ -30,7 +30,7 @@ export default async function Home() {
       <div className="flex min-h-screen w-full flex-col gap-4 p-4 pt-24 lg:justify-center lg:px-32 lg:pt-32 xl:px-64">
         <AudioPlayer />
       </div>
-      <footer className="w-full text-pretty border-t py-5 text-center shadow">
+      <footer className="w-full text-pretty border-t px-4 pb-16 pt-4 text-center shadow lg:pb-4">
         <small>
           Este sitio es solo transmisión en vivo, para más información visite el
           sitio web oficial de{" "}
