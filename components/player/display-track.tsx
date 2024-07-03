@@ -16,12 +16,14 @@ export default function DisplayTrack({ isPlaying, track }: Props) {
         className={`relative grid items-end overflow-hidden rounded-lg bg-transparent shadow-2xl transition-all ${isPlaying ? "scale-0 lg:-translate-x-1/4 lg:scale-100" : "scale-100 lg:translate-x-0"}`}
       >
         <div
-          className={`absolute left-2 top-2 flex items-center gap-1 rounded-md border bg-foreground px-2 py-1 text-xs font-semibold text-white transition-all duration-500`}
+          className={`absolute left-2 top-2 flex items-center gap-1 rounded-md border bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500`}
         >
           <div
             className={`h-2 w-2 rounded-full ${isPlaying ? "bg-red-500" : "bg-secondary"}`}
           ></div>
-          <span>{isPlaying ? "En vivo" : "Pausado"}</span>
+          <span className={`text-secondary`}>
+            {isPlaying ? "En vivo" : "Pausado"}
+          </span>
         </div>
         <Image
           src={track.track_image || "/cover.jpg"}
