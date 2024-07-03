@@ -1,6 +1,7 @@
 import { usePlaylist } from "@/hooks/usePlaylist";
 import { Track } from "@/lib/types";
 import { calculateTimeAgo } from "@/lib/utils";
+import { RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { Skeleton } from "../ui/skeleton";
@@ -23,7 +24,11 @@ interface Props {
 }
 
 export default function Playlist({ track, setTrack, isPlaying }: Props) {
-  const { playlist, isLoading, isError } = usePlaylist();
+  const { playlist, isLoading, isError, getPlaylist } = usePlaylist();
+
+  const handleRefresh = async () => {
+    await getPlaylist();
+  };
 
   useEffect(() => {
     if (playlist.length > 0) {
@@ -32,44 +37,61 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
   }, [setTrack, playlist]);
 
   return (
-    <div className="w-full overflow-auto overflow-y-auto rounded-md border shadow transition-all">
-      {isError ? (
-        <h2 className="text-center">
-          Ocurrió un error al obtener la lista de reproducción
+    <div className="w-full overflow-hidden rounded-md border lg:h-[264px]">
+      <header className="flex items-center justify-between bg-muted p-2">
+        <h2 className="lg:text-normal text-sm font-semibold opacity-70">
+          Ultimas reproducciones
         </h2>
-      ) : isLoading ? (
-        <SkeletonSong />
-      ) : (
-        <ul>
-          {playlist.map((song, index) => (
-            <li
-              key={index}
-              className={`flex gap-2 p-2 ${track.track_title === song.track_title && track.track_artist === song.track_artist ? "bg-primary text-secondary" : ""}`}
-            >
-              <Image
-                src={song.track_image || "/cover.jpg"}
-                alt={`Portada de ${song.track_title}`}
-                width={200}
-                height={200}
-                className="h-14 w-14 rounded-md"
-              />
-              <section className="relative w-full">
-                <div>
-                  <h2 className="text-sm font-semibold">{song.track_title}</h2>
-                  <p className="text-xs">{song.track_artist}</p>
-                </div>
-                <time className="text-xs">
-                  {track.track_title === song.track_title &&
-                  track.track_artist === song.track_artist &&
-                  isPlaying
-                    ? "Reproduciendo"
-                    : calculateTimeAgo(song.track_played)}
-                </time>
-              </section>
-            </li>
-          ))}
-        </ul>
-      )}
+        <button
+          type="button"
+          disabled={isLoading}
+          onClick={handleRefresh}
+          className={`opacity-70 ${isLoading ? "text-secondary" : "text-primary"}`}
+        >
+          <RefreshCwIcon className="size-5 lg:size-6" />
+        </button>
+      </header>
+      <div className="w-full overflow-auto transition-all lg:h-[223px]">
+        {isError ? (
+          <h2 className="text-center">
+            Ocurrió un error al obtener la lista de reproducción
+          </h2>
+        ) : isLoading ? (
+          <SkeletonSong />
+        ) : (
+          <ul className="h-full">
+            {playlist.map((song, index) => (
+              <li
+                key={index}
+                className={`flex gap-2 p-2 ${track.track_title === song.track_title && track.track_artist === song.track_artist ? "bg-primary text-secondary" : ""}`}
+              >
+                <Image
+                  src={song.track_image || "/cover.jpg"}
+                  alt={`Portada de ${song.track_title}`}
+                  width={200}
+                  height={200}
+                  className="h-14 w-14 rounded-md"
+                />
+                <section className="relative w-full">
+                  <div>
+                    <h2 className="text-sm font-semibold">
+                      {song.track_title}
+                    </h2>
+                    <p className="text-xs">{song.track_artist}</p>
+                  </div>
+                  <time className="text-xs">
+                    {track.track_title === song.track_title &&
+                    track.track_artist === song.track_artist &&
+                    isPlaying
+                      ? "Reproduciendo"
+                      : calculateTimeAgo(song.track_played)}
+                  </time>
+                </section>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
