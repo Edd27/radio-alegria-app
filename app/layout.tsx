@@ -1,6 +1,7 @@
 import ThemeProvider from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({
           <main className="min-h-screen bg-background">{children}</main>
           <Toaster />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
