@@ -8,7 +8,7 @@ interface Props {
 
 export default function DisplayTrack({ isPlaying, track }: Props) {
   return (
-    <div className="relative h-full w-full max-w-xs overflow-hidden rounded-lg border bg-transparent shadow lg:overflow-visible lg:border-none lg:shadow-none">
+    <div className="relative h-full w-full overflow-hidden rounded-lg border bg-transparent lg:max-w-xs lg:overflow-visible lg:border-none">
       <div
         className={`absolute left-2 top-2 flex items-center gap-1 rounded-md border bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500 lg:hidden`}
       >
@@ -20,13 +20,13 @@ export default function DisplayTrack({ isPlaying, track }: Props) {
         </span>
       </div>
       <div
-        className={`absolute right-0 top-0 h-full w-full max-w-xs animate-spin-slow bg-[url('/vinyl.webp')] bg-cover transition-all ${isPlaying ? "lg:-right-1/4" : "lg:-right-0"}`}
+        className={`absolute left-0 right-0 top-0 mx-auto h-full w-full max-w-xs animate-spin-slow bg-[url('/vinyl.webp')] bg-cover drop-shadow-2xl transition-all ${isPlaying ? "lg:-right-16" : "lg:-right-0"}`}
       ></div>
       <div
-        className={`relative grid items-end overflow-hidden rounded-lg border bg-secondary transition-all ${isPlaying ? "scale-0 lg:-translate-x-1/4 lg:scale-100" : "scale-100 lg:translate-x-0"}`}
+        className={`relative grid max-w-xs items-end overflow-hidden rounded-lg bg-secondary shadow-lg transition-all ${isPlaying ? "scale-0 lg:-translate-x-16 lg:scale-100" : "scale-100 lg:translate-x-0"}`}
       >
         <div
-          className={`absolute left-2 top-2 flex items-center gap-1 rounded-md border bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500`}
+          className={`absolute left-2 top-2 flex items-center gap-1 rounded-md bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500`}
         >
           <div
             className={`h-2 w-2 rounded-full ${isPlaying ? "bg-red-500" : "bg-secondary"}`}
