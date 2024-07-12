@@ -28,6 +28,10 @@ export default function AudioPlayer() {
     });
 
     setStream(howl);
+
+    return () => {
+      howl.unload();
+    };
   }, []);
 
   useEffect(() => {

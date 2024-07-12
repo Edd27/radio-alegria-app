@@ -16,12 +16,6 @@ export default function Chat() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const currentUser = JSON.parse(
-      window.localStorage.getItem("user") ?? "",
-    ) as ChatUser;
-
-    setUser(currentUser);
-
     function onConnect() {
       socket.emit("subscribe", `${process.env.NEXT_PUBLIC_CHAT_SOCKET_TOPIC}`);
     }
@@ -40,6 +34,12 @@ export default function Chat() {
     if (socket.connected) {
       onConnect();
     }
+
+    const currentUser = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user") || "{}")
+      : null;
+
+    setUser(currentUser);
 
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
