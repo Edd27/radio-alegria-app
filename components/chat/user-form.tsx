@@ -70,6 +70,7 @@ export default function UserForm({ user, setUser }: Props) {
               <FormLabel>Nombre de usuario</FormLabel>
               <FormControl>
                 <Input
+                  className="text-base"
                   placeholder="Escribe tu nombre"
                   {...field}
                 />

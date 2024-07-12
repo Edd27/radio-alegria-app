@@ -61,6 +61,7 @@ export default function MessageForm({ socket, user }: Props) {
             <FormItem className="w-full">
               <FormControl>
                 <Input
+                  className="text-base"
                   placeholder="Escribe tu mensaje"
                   disabled={!user}
                   {...field}
