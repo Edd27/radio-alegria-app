@@ -48,7 +48,7 @@ export default function AudioPlayer() {
   }, [isPlaying, stream]);
 
   return (
-    <div className="mx-auto grid w-full gap-4 lg:grid-cols-3">
+    <div className="mx-auto grid w-full max-w-4xl gap-4 lg:grid-cols-2">
       <div className="flex max-h-[320px] w-full items-center justify-center">
         <DisplayTrack
           isPlaying={isPlaying}

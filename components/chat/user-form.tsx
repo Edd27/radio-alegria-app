@@ -66,7 +66,7 @@ export default function UserForm({ user, setUser }: Props) {
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem className="w-full">
+            <FormItem className="w-full max-w-xs">
               <FormLabel>Nombre de usuario</FormLabel>
               <FormControl>
                 <Input
@@ -74,7 +74,7 @@ export default function UserForm({ user, setUser }: Props) {
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
+              <FormDescription className="text-xs">
                 Ingresa tu nombre para acceder a la sala.
               </FormDescription>
               <FormMessage />
@@ -83,7 +83,7 @@ export default function UserForm({ user, setUser }: Props) {
         />
         <Button
           type="submit"
-          className="w-full"
+          className="w-full max-w-xs"
         >
           Aceptar
         </Button>

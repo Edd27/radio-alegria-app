@@ -27,7 +27,7 @@ export default async function Home() {
           />
         </nav>
       </header>
-      <div className="flex min-h-screen w-full flex-col gap-4 p-4 pt-24 lg:justify-center lg:px-32 lg:pt-32 xl:px-64">
+      <div className="flex min-h-screen w-full flex-col justify-center gap-4 p-4 pt-24 lg:px-32 lg:pt-32 xl:px-64">
         <AudioPlayer />
       </div>
       <footer className="w-full text-pretty border-t px-4 pb-16 pt-4 text-center shadow lg:pb-4">

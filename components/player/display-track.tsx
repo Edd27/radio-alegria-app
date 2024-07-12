@@ -8,7 +8,7 @@ interface Props {
 
 export default function DisplayTrack({ isPlaying, track }: Props) {
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-lg border bg-transparent lg:max-w-xs lg:overflow-visible lg:border-none">
+    <div className="relative h-full w-full overflow-hidden rounded-lg border bg-secondary lg:max-w-xs lg:overflow-visible lg:border-none">
       <div
         className={`absolute left-2 top-2 flex items-center gap-1 rounded-md border bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500 lg:hidden`}
       >
@@ -25,10 +25,10 @@ export default function DisplayTrack({ isPlaying, track }: Props) {
         width={200}
         height={200}
         priority
-        className={`absolute left-0 right-0 top-0 mx-auto w-full max-w-xs drop-shadow-2xl transition-all ${isPlaying ? "animate-spin-slow lg:-right-16" : "lg:-right-0"}`}
+        className={`absolute left-0 right-0 top-0 mx-auto w-full max-w-xs drop-shadow-2xl transition-all ${isPlaying ? "animate-spin-slow lg:-right-28" : "lg:-right-0"}`}
       />
       <div
-        className={`relative mx-auto grid max-w-xs items-end overflow-hidden rounded-lg bg-secondary opacity-0 shadow-lg transition-all lg:opacity-100 ${isPlaying ? "scale-0 lg:-translate-x-16 lg:scale-100" : "scale-100 lg:translate-x-0"}`}
+        className={`relative mx-auto grid max-w-xs items-end overflow-hidden rounded-lg bg-secondary opacity-0 shadow-lg transition-all lg:opacity-100 ${isPlaying ? "scale-0 lg:-translate-x-7 lg:scale-100 xl:-translate-x-14" : "scale-100 lg:translate-x-0"}`}
       >
         <div
           className={`absolute left-2 top-2 flex items-center gap-1 rounded-md bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500`}

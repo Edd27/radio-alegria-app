@@ -77,7 +77,7 @@ export default function Chat() {
   }, [messages.length]);
 
   return (
-    <div className="relative flex max-h-[320px] w-full flex-col justify-between overflow-hidden rounded-md border lg:h-auto">
+    <div className="relative flex h-[320px] w-full flex-col justify-between overflow-hidden rounded-md border lg:col-span-2">
       <ScrollArea className="h-[262px] w-full">
         <ul className="space-y-4 p-2">
           {messages.map((msg, index) => (
