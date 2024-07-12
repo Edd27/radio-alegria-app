@@ -4,6 +4,7 @@ import { calculateTimeAgo } from "@/lib/utils";
 import { RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import { ScrollArea } from "../ui/scroll-area";
 import { Skeleton } from "../ui/skeleton";
 
 function SkeletonSong() {
@@ -51,7 +52,7 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
           <RefreshCwIcon className="size-5 lg:size-6" />
         </button>
       </header>
-      <div className="w-full overflow-auto transition-all lg:h-[223px]">
+      <ScrollArea className="h-[223px] w-full p-2 transition-all">
         {isError ? (
           <h2 className="text-center">
             Ocurrió un error al obtener la lista de reproducción
@@ -59,11 +60,11 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
         ) : isLoading ? (
           <SkeletonSong />
         ) : (
-          <ul className="h-full">
+          <ul>
             {playlist.map((song, index) => (
               <li
                 key={index}
-                className={`flex gap-2 p-2 ${track.track_title === song.track_title && track.track_artist === song.track_artist ? "bg-primary text-secondary" : ""}`}
+                className={`flex gap-2 rounded-lg p-2 ${track.track_title === song.track_title && track.track_artist === song.track_artist ? "bg-primary text-secondary" : ""}`}
               >
                 <Image
                   src={song.track_image || "/cover.jpg"}
@@ -91,7 +92,7 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
             ))}
           </ul>
         )}
-      </div>
+      </ScrollArea>
     </div>
   );
 }

@@ -13,23 +13,28 @@ export default function DisplayTrack({ isPlaying, track }: Props) {
         className={`absolute left-2 top-2 flex items-center gap-1 rounded-md border bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500 lg:hidden`}
       >
         <div
-          className={`h-2 w-2 rounded-full ${isPlaying ? "bg-red-500" : "bg-secondary"}`}
+          className={`h-2 w-2 rounded-full ${isPlaying ? "bg-red-500" : "bg-secondary/35"}`}
         ></div>
         <span className={`text-secondary`}>
           {isPlaying ? "En vivo" : "Pausado"}
         </span>
       </div>
+      <Image
+        src="/vinyl.webp"
+        alt="Disco de vinilo"
+        width={200}
+        height={200}
+        priority
+        className={`absolute left-0 right-0 top-0 mx-auto w-full max-w-xs drop-shadow-2xl transition-all ${isPlaying ? "animate-spin-slow lg:-right-16" : "lg:-right-0"}`}
+      />
       <div
-        className={`absolute left-0 right-0 top-0 mx-auto h-full w-full max-w-xs animate-spin-slow bg-[url('/vinyl.webp')] bg-cover drop-shadow-2xl transition-all ${isPlaying ? "lg:-right-16" : "lg:-right-0"}`}
-      ></div>
-      <div
-        className={`relative grid max-w-xs items-end overflow-hidden rounded-lg bg-secondary shadow-lg transition-all ${isPlaying ? "scale-0 lg:-translate-x-16 lg:scale-100" : "scale-100 lg:translate-x-0"}`}
+        className={`relative mx-auto grid max-w-xs items-end overflow-hidden rounded-lg bg-secondary opacity-0 shadow-lg transition-all lg:opacity-100 ${isPlaying ? "scale-0 lg:-translate-x-16 lg:scale-100" : "scale-100 lg:translate-x-0"}`}
       >
         <div
           className={`absolute left-2 top-2 flex items-center gap-1 rounded-md bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500`}
         >
           <div
-            className={`h-2 w-2 rounded-full ${isPlaying ? "bg-red-500" : "bg-secondary"}`}
+            className={`h-2 w-2 rounded-full ${isPlaying ? "bg-red-500" : "bg-secondary/35"}`}
           ></div>
           <span className={`text-secondary`}>
             {isPlaying ? "En vivo" : "Pausado"}

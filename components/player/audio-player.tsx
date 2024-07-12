@@ -3,6 +3,7 @@
 import { Track } from "@/lib/types";
 import { Howl } from "howler";
 import { useEffect, useState } from "react";
+import Chat from "../chat";
 import Controls from "./controls";
 import DisplayTrack from "./display-track";
 import Playlist from "./playlist";
@@ -43,7 +44,7 @@ export default function AudioPlayer() {
   }, [isPlaying, stream]);
 
   return (
-    <div className="mx-auto grid w-full gap-4 lg:grid-cols-2">
+    <div className="mx-auto grid w-full gap-4 lg:grid-cols-3">
       <div className="flex max-h-[320px] w-full items-center justify-center">
         <DisplayTrack
           isPlaying={isPlaying}
@@ -68,6 +69,7 @@ export default function AudioPlayer() {
           isPlaying={isPlaying}
         />
       </div>
+      <Chat />
     </div>
   );
 }
