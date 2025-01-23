@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ChatUser } from "@/lib/types";
+import { ChatMessage, ChatUser } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SendIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -20,9 +20,14 @@ const formSchema = z.object({
 interface Props {
   socket: Socket;
   user: ChatUser | null;
+  currentMessages: ChatMessage[];
 }
 
-export default function MessageForm({ socket, user }: Props) {
+export default function MessageForm({
+  socket,
+  user,
+  currentMessages = [],
+}: Props) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,18 +36,20 @@ export default function MessageForm({ socket, user }: Props) {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const newMessage: ChatMessage = {
+      body: values.message,
+      time: new Intl.DateTimeFormat("es-MX", {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      }).format(new Date()),
+      user: user ?? null,
+      type: "user",
+    };
+
     socket.emit("broadcast", {
       channel: `${process.env.NEXT_PUBLIC_CHAT_SOCKET_TOPIC}`,
-      message: {
-        body: values.message,
-        time: new Intl.DateTimeFormat("es-MX", {
-          hour: "numeric",
-          minute: "numeric",
-          hour12: true,
-        }).format(new Date()),
-        user: user ?? null,
-        type: "user",
-      },
+      message: newMessage,
     });
 
     form.reset();

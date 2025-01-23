@@ -62,6 +62,9 @@ export default function UserForm({ user, setUser }: Props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className={`absolute flex h-full w-full flex-col items-center justify-center gap-2 rounded-md p-4 backdrop-blur-sm backdrop-brightness-95 transition-all lg:p-10 ${user ? "scale-0 opacity-0" : "scale-100 opacity-100"}`}
       >
+        <h2 className="mb-6 text-xl font-bold text-primary">
+          Chatea con los demás oyentes
+        </h2>
         <FormField
           control={form.control}
           name="name"
@@ -86,7 +89,7 @@ export default function UserForm({ user, setUser }: Props) {
           type="submit"
           className="w-full max-w-xs"
         >
-          Aceptar
+          Ingresar
         </Button>
       </form>
     </Form>

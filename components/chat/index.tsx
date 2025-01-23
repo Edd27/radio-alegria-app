@@ -11,6 +11,7 @@ import UserForm from "./user-form";
 
 export default function Chat() {
   const [messages, setMessages] = useState<Array<ChatMessage>>([]);
+
   const [user, setUser] = useState<ChatUser | null>(null);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -28,18 +29,28 @@ export default function Chat() {
     }
 
     function onMessage(message: ChatMessage) {
-      setMessages((prevMessages) => [...prevMessages, message]);
+      setMessages((prevMessages) => {
+        const newMessages = [...prevMessages, message];
+        window.localStorage.setItem("messages", JSON.stringify(newMessages));
+        return newMessages;
+      });
     }
 
     if (socket.connected) {
       onConnect();
     }
 
-    const currentUser = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user") || "{}")
+    const currentUser = window.localStorage.getItem("user")
+      ? JSON.parse(window.localStorage.getItem("user") || "{}")
       : null;
 
     setUser(currentUser);
+
+    const currentMessages = window.localStorage.getItem("messages")
+      ? JSON.parse(window.localStorage.getItem("messages") || "[]")
+      : [];
+
+    setMessages(currentMessages);
 
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
@@ -50,6 +61,8 @@ export default function Chat() {
       socket.off("disconnect", onDisconnect);
       socket.off(`${process.env.NEXT_PUBLIC_CHAT_SOCKET_TOPIC}`, onMessage);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -67,6 +80,12 @@ export default function Chat() {
           type: "system",
         },
       });
+
+      const currentMessages = window.localStorage.getItem("messages")
+        ? JSON.parse(window.localStorage.getItem("messages") || "[]")
+        : [];
+
+      setMessages(currentMessages);
     }
   }, [user]);
 
@@ -79,7 +98,7 @@ export default function Chat() {
   return (
     <div className="relative flex h-[320px] w-full flex-col justify-between overflow-hidden rounded-md border lg:col-span-2">
       <ScrollArea className="h-[262px] w-full">
-        <ul className="space-y-4 p-2">
+        <section className="space-y-4 p-2">
           {messages.map((msg, index) => (
             <MessageItem
               user={user}
@@ -88,11 +107,12 @@ export default function Chat() {
             />
           ))}
           <div ref={ref} />
-        </ul>
+        </section>
       </ScrollArea>
       <MessageForm
         socket={socket}
         user={user}
+        currentMessages={messages}
       />
       <UserForm
         user={user}

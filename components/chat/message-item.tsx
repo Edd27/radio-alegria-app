@@ -21,7 +21,7 @@ export default function MessageItem({ message, user }: Props) {
             : "justify-start"
       }`}
     >
-      <div
+      <article
         className={`leading-1.5 flex flex-col ${
           isMessageOfCurrentUser
             ? "rounded-s-xl rounded-ee-xl"
@@ -49,7 +49,7 @@ export default function MessageItem({ message, user }: Props) {
             {time}
           </time>
         )}
-      </div>
+      </article>
     </div>
   );
 }

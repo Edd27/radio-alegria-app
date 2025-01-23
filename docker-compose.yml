@@ -1,14 +1,12 @@
-version: "3"
-
 services:
   db:
-    container_name: next-bp-db
+    container_name: ${DB_CONTAINER_NAME}
     image: "postgres"
     restart: always
     shm_size: 120mb
     ports:
-      - "5433:5432"
+      - "${DB_PORT}:5432"
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: mydb
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
