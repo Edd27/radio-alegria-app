@@ -4,19 +4,8 @@ import { calculateTimeAgo } from "@/lib/utils";
 import { RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import { clearIntervalAsync, setIntervalAsync } from "set-interval-async";
 import { ScrollArea } from "../ui/scroll-area";
-import { Skeleton } from "../ui/skeleton";
-
-function SkeletonSong() {
-  return (
-    <div className="flex flex-col space-y-3 p-2">
-      <Skeleton className="h-8 w-full rounded-xl" />
-      <Skeleton className="h-8 w-full rounded-xl" />
-      <Skeleton className="h-8 w-full rounded-xl" />
-      <Skeleton className="h-8 w-full rounded-xl" />
-    </div>
-  );
-}
 
 interface Props {
   track: Track;
@@ -37,6 +26,14 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
     }
   }, [setTrack, playlist]);
 
+  useEffect(() => {
+    const interval = setIntervalAsync(handleRefresh, 90000);
+
+    return () => {
+      clearIntervalAsync(interval);
+    };
+  });
+
   return (
     <div className="w-full overflow-hidden rounded-md border lg:h-[264px]">
       <header className="flex items-center justify-between bg-muted p-2">
@@ -47,7 +44,7 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
           type="button"
           disabled={isLoading}
           onClick={handleRefresh}
-          className={`opacity-70 ${isLoading ? "text-secondary" : "text-primary"}`}
+          className={`opacity-70 ${isLoading ? "text-secondary" : "text-primary"} duration-500 hover:rotate-180`}
         >
           <RefreshCwIcon className="size-5 lg:size-6" />
         </button>
@@ -57,8 +54,6 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
           <h2 className="text-center">
             Ocurrió un error al obtener la lista de reproducción
           </h2>
-        ) : isLoading ? (
-          <SkeletonSong />
         ) : (
           <ul>
             {playlist.map((song, index) => (
