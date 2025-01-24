@@ -28,7 +28,7 @@ export default function DisplayTrack({ isPlaying, track }: Props) {
         className={`absolute left-0 right-0 top-0 mx-auto w-full max-w-xs drop-shadow-2xl transition-all ${isPlaying ? "animate-spin-slow lg:-right-28" : "lg:-right-0"}`}
       />
       <div
-        className={`relative mx-auto grid h-full max-w-xs items-end overflow-hidden rounded-lg border-4 border-primary bg-secondary opacity-0 shadow-lg transition-all lg:opacity-100 ${isPlaying ? "scale-0 lg:-translate-x-7 lg:scale-100 xl:-translate-x-14" : "scale-100 lg:translate-x-0"}`}
+        className={`relative mx-auto grid h-full min-h-[312px] max-w-xs items-end overflow-hidden rounded-lg border-4 border-primary bg-secondary opacity-0 shadow-lg transition-all lg:opacity-100 ${isPlaying ? "scale-0 lg:-translate-x-7 lg:scale-100 xl:-translate-x-14" : "scale-100 lg:translate-x-0"}`}
       >
         <div
           className={`absolute left-2 top-2 flex items-center gap-1 rounded-md bg-foreground px-2 py-1 text-xs font-semibold transition-all duration-500`}
