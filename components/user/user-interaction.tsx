@@ -13,10 +13,7 @@ export default function UserInteraction() {
         user={user}
         setUser={setUser}
       />
-      <PlaybackQueue
-        user={user}
-        setUser={setUser}
-      />
+      <PlaybackQueue user={user} />
     </div>
   );
 }
