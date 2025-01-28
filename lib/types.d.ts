@@ -17,3 +17,10 @@ export type ChatMessage = {
   user: ChatUser | null;
   type: "user" | "system";
 };
+
+export type SongRequest = {
+  title: string;
+  artist: string;
+  user: ChatUser | null;
+  requestedAt: Date;
+};

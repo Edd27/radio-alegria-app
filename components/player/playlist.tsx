@@ -35,7 +35,7 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
   });
 
   return (
-    <div className="w-full overflow-hidden rounded-md border lg:h-[264px]">
+    <div className="h-fit w-full overflow-hidden rounded-md border">
       <header className="flex items-center justify-between bg-muted p-2">
         <h2 className="lg:text-normal text-sm font-semibold opacity-70">
           Ultimas reproducciones
@@ -49,7 +49,7 @@ export default function Playlist({ track, setTrack, isPlaying }: Props) {
           <RefreshCwIcon className="size-5 lg:size-6" />
         </button>
       </header>
-      <ScrollArea className="h-[223px] w-full p-2 transition-all">
+      <ScrollArea className="h-[240px] w-full p-2 transition-all">
         {isError ? (
           <h2 className="text-center">
             Ocurrió un error al obtener la lista de reproducción

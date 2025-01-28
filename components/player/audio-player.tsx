@@ -3,7 +3,6 @@
 import { Track } from "@/lib/types";
 import { Howl } from "howler";
 import { useEffect, useState } from "react";
-import Chat from "../chat";
 import Controls from "./controls";
 import DisplayTrack from "./display-track";
 import Playlist from "./playlist";
@@ -48,32 +47,33 @@ export default function AudioPlayer() {
   }, [isPlaying, stream]);
 
   return (
-    <div className="mx-auto grid w-full max-w-4xl gap-4 lg:grid-cols-2">
-      <div className="flex max-h-[320px] w-full items-center justify-center">
+    <div className="grid h-fit w-full gap-6 lg:w-[424px] lg:min-w-[424px]">
+      <div className="grid w-full gap-4 overflow-hidden">
         <DisplayTrack
           isPlaying={isPlaying}
           track={track}
         />
-      </div>
-      <div className="h-fit w-full overflow-hidden lg:h-[320px]">
-        <div className="mb-4 flex w-full items-center gap-4">
-          <Controls
-            isPlaying={isPlaying}
-            setIsPlaying={setIsPlaying}
-            setStream={setStream}
-          />
-          <Volume
-            volume={volume}
-            setVolume={setVolume}
-          />
+        <div className="overflow-hidden">
+          <h2 className="truncate text-2xl font-bold">{track.track_title}</h2>
+          <p className="font-semibold opacity-70">{track.track_artist}</p>
         </div>
-        <Playlist
-          setTrack={setTrack}
-          track={track}
+      </div>
+      <div className="flex w-full items-center gap-4">
+        <Controls
           isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          setStream={setStream}
+        />
+        <Volume
+          volume={volume}
+          setVolume={setVolume}
         />
       </div>
-      <Chat />
+      <Playlist
+        setTrack={setTrack}
+        track={track}
+        isPlaying={isPlaying}
+      />
     </div>
   );
 }

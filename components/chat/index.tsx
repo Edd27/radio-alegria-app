@@ -3,16 +3,19 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { socket } from "@/lib/socket";
 import { ChatMessage, ChatUser } from "@/lib/types";
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import EditUser from "./edit-user";
 import MessageForm from "./message-form";
 import MessageItem from "./message-item";
 import UserForm from "./user-form";
 
-export default function Chat() {
-  const [messages, setMessages] = useState<Array<ChatMessage>>([]);
+interface Props {
+  user: ChatUser | null;
+  setUser: Dispatch<SetStateAction<ChatUser | null>>;
+}
 
-  const [user, setUser] = useState<ChatUser | null>(null);
+export default function Chat({ user, setUser }: Props) {
+  const [messages, setMessages] = useState<Array<ChatMessage>>([]);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -96,8 +99,8 @@ export default function Chat() {
   }, [messages.length]);
 
   return (
-    <div className="relative flex h-[320px] w-full flex-col justify-between overflow-hidden rounded-md border lg:col-span-2">
-      <ScrollArea className="h-[262px] w-full">
+    <div className="relative flex w-full flex-col justify-between overflow-hidden rounded-md border">
+      <ScrollArea className="h-full w-full">
         <section className="space-y-4 p-2">
           {messages.map((msg, index) => (
             <MessageItem

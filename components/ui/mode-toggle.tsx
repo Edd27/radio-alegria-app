@@ -21,9 +21,9 @@ import {
   BrushIcon,
   CheckIcon,
   ChevronsUpDownIcon,
+  ComputerIcon,
   Moon,
   Sun,
-  SunMoon,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -44,7 +44,7 @@ export function ModeToggle({ type = "button", icons = true }: Props) {
       >
         <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
         <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-        <span className="sr-only">Change theme</span>
+        <span className="sr-only">Cambiar tema</span>
       </Button>
     );
   }
@@ -59,30 +59,30 @@ export function ModeToggle({ type = "button", icons = true }: Props) {
           >
             <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Change theme</span>
+            <span className="sr-only">Cambiar tema</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="mr-4">
           <DropdownMenuItem
             className="cursor-pointer"
             onClick={() => setTheme("light")}
           >
             {icons ? <Sun className="mr-2 h-4 w-4" /> : null}
-            <span>Light</span>
+            <span>Claro</span>
           </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer"
             onClick={() => setTheme("dark")}
           >
             {icons ? <Moon className="mr-2 h-4 w-4" /> : null}
-            <span>Dark</span>
+            <span>Oscuro</span>
           </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer"
             onClick={() => setTheme("system")}
           >
-            {icons ? <SunMoon className="mr-2 h-4 w-4" /> : null}
-            <span>System</span>
+            {icons ? <ComputerIcon className="mr-2 h-4 w-4" /> : null}
+            <span>Sistema</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -98,7 +98,7 @@ export function ModeToggle({ type = "button", icons = true }: Props) {
             className="relative w-full cursor-pointer justify-start gap-2 font-semibold"
           >
             <BrushIcon />
-            <span>Theme</span>
+            <span>Tema</span>
             <ChevronsUpDownIcon className="absolute right-4 h-4 w-4" />
           </Button>
         </CollapsibleTrigger>
@@ -109,7 +109,7 @@ export function ModeToggle({ type = "button", icons = true }: Props) {
             onClick={() => setTheme("light")}
           >
             {icons ? <Sun className="mr-2 h-4 w-4" /> : null}
-            <span>Light</span>
+            <span>Claro</span>
             {theme === "light" && (
               <CheckIcon className="absolute right-4 h-4 w-4" />
             )}
@@ -120,7 +120,7 @@ export function ModeToggle({ type = "button", icons = true }: Props) {
             onClick={() => setTheme("dark")}
           >
             {icons ? <Moon className="mr-2 h-4 w-4" /> : null}
-            <span>Dark</span>
+            <span>Oscuro</span>
             {theme === "dark" && (
               <CheckIcon className="absolute right-4 h-4 w-4" />
             )}
@@ -130,8 +130,8 @@ export function ModeToggle({ type = "button", icons = true }: Props) {
             className="relative w-full cursor-pointer justify-start gap-2 font-semibold"
             onClick={() => setTheme("system")}
           >
-            {icons ? <SunMoon className="mr-2 h-4 w-4" /> : null}
-            <span>System</span>
+            {icons ? <ComputerIcon className="mr-2 h-4 w-4" /> : null}
+            <span>Sistema</span>
             {theme === "system" && (
               <CheckIcon className="absolute right-4 h-4 w-4" />
             )}
@@ -155,21 +155,21 @@ export function ModeToggle({ type = "button", icons = true }: Props) {
               onClick={() => setTheme("light")}
             >
               {icons ? <Sun className="mr-2 h-4 w-4" /> : null}
-              <span>Light</span>
+              <span>Claro</span>
             </DropdownMenuItem>
             <DropdownMenuItem
               className="cursor-pointer"
               onClick={() => setTheme("dark")}
             >
               {icons ? <Moon className="mr-2 h-4 w-4" /> : null}
-              <span>Dark</span>
+              <span>Oscuro</span>
             </DropdownMenuItem>
             <DropdownMenuItem
               className="cursor-pointer"
               onClick={() => setTheme("system")}
             >
-              {icons ? <SunMoon className="mr-2 h-4 w-4" /> : null}
-              <span>System</span>
+              {icons ? <ComputerIcon className="mr-2 h-4 w-4" /> : null}
+              <span>Sistema</span>
             </DropdownMenuItem>
           </DropdownMenuSubContent>
         </DropdownMenuPortal>

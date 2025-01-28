@@ -1,6 +1,6 @@
 "use client";
 
-import { Volume1Icon, Volume2Icon } from "lucide-react";
+import { Volume1Icon } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { Slider } from "../ui/slider";
 
@@ -10,10 +10,6 @@ interface Props {
 }
 
 export default function Volume({ volume, setVolume }: Props) {
-  const incrementVolume = () => {
-    setVolume((prev) => (prev === 100 ? prev : prev + 1));
-  };
-
   const decrementVolume = () => {
     setVolume((prev) => (prev === 0 ? prev : prev - 1));
   };
@@ -25,7 +21,7 @@ export default function Volume({ volume, setVolume }: Props) {
   return (
     <div className="hidden h-full w-full items-center gap-2 lg:flex">
       <button onClick={decrementVolume}>
-        <Volume1Icon />
+        <Volume1Icon className="size-5" />
       </button>
       <Slider
         defaultValue={[volume]}
@@ -34,10 +30,8 @@ export default function Volume({ volume, setVolume }: Props) {
         min={0}
         step={1}
         onValueChange={handleVolumeChange}
+        className="cursor-pointer"
       />
-      <button onClick={incrementVolume}>
-        <Volume2Icon />
-      </button>
     </div>
   );
 }
